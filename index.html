@@ -37,7 +37,11 @@
     .eyebrow, .meta { font: 10px/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
     .rule { border-top: 1px solid var(--line); }
 
-    main { padding: 0 0 80px; }
+    main { display: flex; flex-direction: column; padding: 0 0 80px; }
+    #work { order: 1; }
+    #other-work { order: 2; }
+    #videos { order: 3; }
+    #about { order: 4; }
     .hero { min-height: 72svh; display: grid; place-items: center; position: relative; overflow: hidden; isolation: isolate; text-align: center; }
     .hero-copy { position: relative; z-index: 1; width: min(800px, 92vw); padding: 88px 0 72px; }
     .hero h1 { margin: 14px 0 20px; color: var(--ink); font: clamp(72px, 9vw, 116px)/.9 var(--handwritten); font-weight: 400; }
@@ -74,6 +78,19 @@
     .card-foot a, .work-row > span:last-child { color: var(--warm-accent); }
     .drag-hint { margin: 38px 0 0; color: var(--muted); text-align: right; font-size: 10px; }
 
+    .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .video-card { display: block; }
+    .video-thumb { display: grid; place-items: center; aspect-ratio: 16 / 9; position: relative; overflow: hidden; margin-bottom: 13px; border: 1px solid var(--line); background: #ead7c7; }
+    .video-card:nth-child(2) .video-thumb { background: #dce0d3; }
+    .video-card:nth-child(3) .video-thumb { background: #d5dce1; }
+    .video-thumb::before, .video-thumb::after { content: ""; position: absolute; border: 1px solid rgba(66, 64, 68, .22); border-radius: 50%; }
+    .video-thumb::before { width: 62%; height: 140%; transform: rotate(25deg); }
+    .video-thumb::after { width: 34%; height: 75%; transform: translate(55%, -28%); }
+    .video-play { display: grid; place-items: center; z-index: 1; width: 42px; height: 42px; border: 1px solid var(--ink); border-radius: 50%; color: var(--ink); font: 9px var(--mono); text-transform: uppercase; }
+    .video-meta { display: flex; justify-content: space-between; gap: 10px; color: var(--muted); font: 10px var(--mono); }
+    .video-card h3 { margin: 7px 0 0; color: var(--ink); font-size: 16px; font-weight: 400; }
+    .video-status { margin: 5px 0 0; color: var(--muted); font-size: 11px; }
+
     .work-list { border-top: 1px solid var(--line); }
     .work-row { display: grid; grid-template-columns: 44px minmax(240px, 1fr) 160px 54px 20px; gap: clamp(12px, 2vw, 22px); align-items: center; min-height: 94px; border-bottom: 1px solid var(--line); transition: background .2s ease, padding .2s ease; }
     .work-row:hover { padding: 0 10px; background: var(--paper-tint); }
@@ -97,6 +114,7 @@
       .featured-grid { display: block; padding: 10px 8px 24px; }
       .project-card { max-width: 310px; min-height: 265px; margin: 0 auto 24px; }
       .project-card:nth-child(1), .project-card:nth-child(2), .project-card:nth-child(3) { transform: none; }
+      .video-grid { grid-template-columns: 1fr; gap: 28px; }
       .work-row { grid-template-columns: 28px minmax(0, 1fr) 18px; gap: 12px; min-height: 86px; }
       .work-type, .work-year { display: none; }
       .section-heading { align-items: flex-start; flex-direction: column; gap: 8px; }
@@ -130,9 +148,38 @@
         <p class="drag-hint">Drag a card to explore</p>
       </section>
 
-      <section class="rule" aria-labelledby="other-title">
+      <section class="rule" id="videos" aria-labelledby="videos-title">
+        <div class="section-heading"><h2 id="videos-title">Project videos <span>▶</span></h2><p>Coming soon / 03</p></div>
+        <div class="video-grid">
+          <article class="video-card">
+            <div class="video-thumb" aria-label="Home-lab video thumbnail placeholder"><span class="video-play">play</span></div>
+            <div class="video-meta"><span>Self-hosting</span><span>01</span></div>
+            <h3>Home-lab</h3>
+            <p class="video-status">A walkthrough is on the way.</p>
+          </article>
+          <article class="video-card">
+            <div class="video-thumb" aria-label="web01 video thumbnail placeholder"><span class="video-play">play</span></div>
+            <div class="video-meta"><span>Frontend</span><span>02</span></div>
+            <h3>web01</h3>
+            <p class="video-status">I’ll show how this site came together.</p>
+          </article>
+          <article class="video-card">
+            <div class="video-thumb" aria-label="DevBuddy video thumbnail placeholder"><span class="video-play">play</span></div>
+            <div class="video-meta"><span>Developer tools</span><span>03</span></div>
+            <h3>DevBuddy</h3>
+            <p class="video-status">Video notes will land here soon.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="rule" id="other-work" aria-labelledby="other-title">
         <div class="section-heading"><h2 id="other-title">Other work <span>⁕</span></h2><p id="project-count">04 projects</p></div>
         <div class="work-list" id="work-list"></div>
+      </section>
+
+      <section class="rule" id="about" aria-labelledby="about-title">
+        <div class="section-heading"><h2 id="about-title">A little about me <span>⌘</span></h2><p>More soon</p></div>
+        <p class="about-placeholder">I’ll add this part when I have the words for it.</p>
       </section>
     </main>
 
